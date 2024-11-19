@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-from src.TireModel import SolverMode
-from src.TireModel.PAC2002 import PAC2002
-from src.Core import TireState
+from src.tire_models import SolverMode
+from src.tire_models.PAC2002 import PAC2002
+from src.core import TireState
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 if __name__ == "__main__":
 
     # Initialize the tire model
-    #myTireModel = ot.tire('PAC2002')
+    # myTireModel = ot.tire('PAC2002')
     myTireModel = PAC2002()
 
     # Initialize the tire state
@@ -26,14 +26,13 @@ if __name__ == "__main__":
     slip_angles = np.linspace(-15, 15, 50) * 3.14 / 180
 
     # Print out some pretty formatting
-    print('OpenTire Slip Angle Sweep Demo\n')
-    print('{0:>10} | {1:>10} | {2:>10} | {3:>10} | {4:>10}'
-          .format('SA [deg]',
-                  'FZ [N]',
-                  'FY [N]',
-                  'MZ [Nm]',
-                  'MX [Nm]'))
-    print('=' * 62)
+    print("OpenTire Slip Angle Sweep Demo\n")
+    print(
+        "{0:>10} | {1:>10} | {2:>10} | {3:>10} | {4:>10}".format(
+            "SA [deg]", "FZ [N]", "FY [N]", "MZ [Nm]", "MX [Nm]"
+        )
+    )
+    print("=" * 62)
 
     # Pre-allocate an array for the result
     FyArray = []
@@ -47,15 +46,14 @@ if __name__ == "__main__":
 
         # Grab results for plotting
         FyArray.append(state.FY)
-        #MzArray.append(state.MZ)
-        #MxArray.append(state.MX)
+        # MzArray.append(state.MZ)
+        # MxArray.append(state.MX)
 
-        print('{0:>10.1f} \t {1:>10.0f} \t {2:>10.1f} \t {3:>10.1f} \t {4:>10.1f}'
-              .format(state.SA * 180 / 3.14,
-                      state.FZ,
-                      state.FY,
-                      state.MZ,
-                      state.MX))
+        print(
+            "{0:>10.1f} \t {1:>10.0f} \t {2:>10.1f} \t {3:>10.1f} \t {4:>10.1f}".format(
+                state.SA * 180 / 3.14, state.FZ, state.FY, state.MZ, state.MX
+            )
+        )
 
 # Plot results
 fig = plt.figure()
